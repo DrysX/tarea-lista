@@ -1,5 +1,5 @@
 import flask as fk
-from flask import Flask
+from flask import Flask, redirect, url_for
 
 app = Flask(__name__)
 
@@ -12,6 +12,8 @@ def home():
 
         if tarea:
             tareas.append(tarea)
+        
+        return redirect(url_for("home"))
 
     return fk.render_template(
         "index.html",
