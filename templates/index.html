@@ -9,19 +9,20 @@
     <h1>Lista de tareas</h1>
 
     <section>
-        <input type="text">
+        <form action="/" method="POST">
+            <input type="text" name="tarea" placeholder="Escribe una tarea">
 
-        <br>
+            <br>
 
-        <button>Agregar</button>
+            <button type="submit">Agregar</button>
+        </form>
     </section>
 
     <section>
         <ul>
-            <li>Aprender Flask</li>
-            <li>Hacer ejercicio</li>
-            <li>Comprar pan</li>
-            <li>Estudia Python</li>
+            {% for tarea in tareas %}
+                <li>{{ tarea }}</li>
+            {% endfor %}
         </ul>
     </section>
 </body>
