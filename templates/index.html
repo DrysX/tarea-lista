@@ -28,7 +28,7 @@
                         {{ tarea.titulo }}
                     {% endif %}
 
-                    <form action="{{ url_for('completar', id_tarea=tarea.id) }}" method="POST" style="display: inline;">
+                    <form action="{{ url_for('tareas.completar', id_tarea=tarea.id) }}" method="POST" style="display: inline;">
                         <button type="submit">
                             {% if tarea.completada %}
                                 desmarcar
@@ -37,7 +37,7 @@
                             {% endif %}
                     </form>
                     
-                    <form action="{{ url_for('eliminar', id_tarea=tarea.id) }}" method="POST" style="display: inline;">
+                    <form action="{{ url_for('tareas.eliminar', id_tarea=tarea.id) }}" method="POST" style="display: inline;">
                         <button type="submit">Eliminar</button>
                     </form>
                 </li>
