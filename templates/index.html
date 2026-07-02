@@ -21,7 +21,12 @@
     <section>
         <ul>
             {% for tarea in tareas %}
-                <li>{{ tarea }}</li>
+                <li>
+                    {{ tarea }}
+                    <form action="/eliminar/{{ loop.index0 }}" method="POST" style="display: inline;">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </li>
             {% endfor %}
         </ul>
     </section>

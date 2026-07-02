@@ -1,5 +1,5 @@
 import flask as fk
-from flask import Flask, redirect, url_for
+from flask import Flask,render_template, redirect, url_for
 
 app = Flask(__name__)
 
@@ -15,10 +15,17 @@ def home():
         
         return redirect(url_for("home"))
 
-    return fk.render_template(
+    return render_template(
         "index.html",
         tareas=tareas
     )
+
+@app.route("/eliminar/<int:id_tarea>", methods=["POST"])
+def eliminar_tarea(id_tarea):
+    if 0 <= id_tarea < len(tareas):
+        tareas.pop(id_tarea)
+    return redirect(url_for("home"))
+
 
 if __name__ == "__main__":
     app.run(
