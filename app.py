@@ -11,7 +11,12 @@ def home():
         tarea = fk.request.form["tarea"].strip()
 
         if tarea:
-            tareas.append(tarea)
+            tareas.append(
+                {
+                    "titulo": tarea,
+                    "completada": False
+                }
+            )
         
         return redirect(url_for("home"))
 
@@ -20,8 +25,14 @@ def home():
         tareas=tareas
     )
 
+@app.route("/completar/<int:id_tarea>", methods=["POST"])
+def completar(id_tarea):
+    if 0 <= id_tarea < len(tareas):
+        tareas[id_tarea]["completada"] = not tareas[id_tarea]["completada"]
+    return redirect(url_for("home"))
+
 @app.route("/eliminar/<int:id_tarea>", methods=["POST"])
-def eliminar_tarea(id_tarea):
+def eliminar(id_tarea):
     if 0 <= id_tarea < len(tareas):
         tareas.pop(id_tarea)
     return redirect(url_for("home"))

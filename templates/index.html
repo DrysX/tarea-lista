@@ -22,8 +22,22 @@
         <ul>
             {% for tarea in tareas %}
                 <li>
-                    {{ tarea }}
-                    <form action="/eliminar/{{ loop.index0 }}" method="POST" style="display: inline;">
+                    {% if tarea.completada %}
+                        <s>{{ tarea.titulo }}</s>
+                    {% else %}
+                        {{ tarea.titulo }}
+                    {% endif %}
+
+                    <form action="{{ url_for('completar', id_tarea=loop.index0) }}" method="POST" style="display: inline;">
+                        <button type="submit">
+                            {% if tarea.completada %}
+                                desmarcar
+                            {% else %}
+                                Completar
+                            {% endif %}
+                    </form>
+                    
+                    <form action="{{ url_for('eliminar', id_tarea=loop.index0) }}" method="POST" style="display: inline;">
                         <button type="submit">Eliminar</button>
                     </form>
                 </li>
